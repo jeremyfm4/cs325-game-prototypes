@@ -107,7 +107,7 @@ window.onload = function() {
     // Function to kill a coin
     takeCoin: function(player, coin) {
         coin.kill();
-    },
+    }
 
     // Function to restart the game
     restart: function() {
