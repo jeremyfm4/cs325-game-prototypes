@@ -13,37 +13,84 @@ window.onload = function() {
     var game = new Phaser.Game( 800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update } );
     
     function preload() {
-        // Load an image and call it 'logo'.
-        game.load.image( 'logo', 'assets/phaser.png' );
+        game.load.image('player', 'assets/player.png');
+        game.load.image('wall', 'assets/wall.png');
+        game.load.image('coin', 'assets/coin.png');
+        game.load.image('enemy', 'assets/enemy.png');
     }
     
     var bouncy;
     
     function create() {
-        // Create a sprite at the center of the screen using the 'logo' image.
-        bouncy = game.add.sprite( game.world.centerX, game.world.centerY, 'logo' );
-        // Anchor the sprite at its center, as opposed to its top-left corner.
-        // so it will be truly centered.
-        bouncy.anchor.setTo( 0.5, 0.5 );
-        
-        // Turn on the arcade physics engine for this sprite.
-        game.physics.enable( bouncy, Phaser.Physics.ARCADE );
-        // Make it bounce off of the world bounds.
-        bouncy.body.collideWorldBounds = true;
-        
-        // Add some text using a CSS style.
-        // Center it in X, and position its top 15 pixels from the top of the world.
-        var style = { font: "25px Verdana", fill: "#9999ff", align: "center" };
-        var text = game.add.text( game.world.centerX, 15, "Build something amazing.", style );
-        text.anchor.setTo( 0.5, 0.0 );
+        game.stage.backgroundColor = '#3598db';
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+        game.world.enableBody = true;
+        this.cursor = game.input.keyboard.createCursorKeys();
+        this.player = game.add.sprite(70, 100, 'player');
+        this.player.body.gravity.y = 600;
+        this.walls = game.add.group();
+        this.coins = game.add.group();
+        this.enemies = game.add.group();
+        var level = [
+        'xxxxxxxxxxxxxxxxxxxxxx',
+        '!         !          x',
+        '!                 o  x',
+        '!         o          x',
+        '!                    x',
+        '!     o   !    x     x',
+        'xxxxxxxxxxxxxxxx!!!!!x',
+        ];
+        // Create the level by going through the array
+        for (var i = 0; i < level.length; i++) {
+            for (var j = 0; j < level[i].length; j++) {
+
+        // Create a wall and add it to the 'walls' group
+        if (level[i][j] == 'x') {
+            var wall = game.add.sprite(30+20*j, 30+20*i, 'wall');
+            this.walls.add(wall);
+            wall.body.immovable = true; 
+        }
+
+        // Create a coin and add it to the 'coins' group
+        else if (level[i][j] == 'o') {
+            var coin = game.add.sprite(30+20*j, 30+20*i, 'coin');
+            this.coins.add(coin);
+        }
+
+        // Create a enemy and add it to the 'enemies' group
+        else if (level[i][j] == '!') {
+            var enemy = game.add.sprite(30+20*j, 30+20*i, 'enemy');
+            this.enemies.add(enemy);
+        }
     }
-    
-    function update() {
-        // Accelerate the 'logo' sprite towards the cursor,
-        // accelerating at 500 pixels/second and moving no faster than 500 pixels/second
-        // in X or Y.
-        // This function returns the rotation angle that makes it visually match its
-        // new trajectory.
-        bouncy.rotation = game.physics.arcade.accelerateToPointer( bouncy, game.input.activePointer, 500, 500, 500 );
-    }
+}
+}
+
+function update() {
+    if (this.cursor.left.isDown) 
+        this.player.body.velocity.x = -200;
+    else if (this.cursor.right.isDown) 
+        this.player.body.velocity.x = 200;
+    else 
+       this.player.body.velocity.x = 0;
+   if (this.cursor.up.isDown && this.player.body.touching.down) 
+    this.player.body.velocity.y = -250;
+    // Make the player and the walls collide
+    game.physics.arcade.collide(this.player, this.walls);
+
+// Call the 'takeCoin' function when the player takes a coin
+game.physics.arcade.overlap(this.player, this.coins, this.takeCoin, null, this);
+
+// Call the 'restart' function when the player touches the enemy
+game.physics.arcade.overlap(this.player, this.enemies, this.restart, null, this);
+}
+// Function to kill a coin
+takeCoin: function(player, coin) {
+    coin.kill();
+},
+
+// Function to restart the game
+restart: function() {
+    game.state.start('main');
+}
 };
