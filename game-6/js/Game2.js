@@ -395,14 +395,14 @@ GameStates.makeGame2 = function( game, shared ) {
             nextFireAngel1 = game.time.now + 3000;
             bullet1 = bullets.getFirstDead();
             bullet1.reset(angel1.x + 120, angel1.y + 60);
-            bullet1.body.velocity.x = 500;
+            bullet1.body.velocity.x = 400;
         },
         
         shootBullet2: function() {
-            nextFireAngel2 = game.time.now + 4000;
+            nextFireAngel2 = game.time.now + 5000;
             bullet2 = bullets.getFirstDead();
             bullet2.reset(angel2.x + 120, angel2.y + 60);
-            bullet2.body.velocity.x = 300;
+            bullet2.body.velocity.x = 250;
         },
         
         //fires cannon beam projectile
