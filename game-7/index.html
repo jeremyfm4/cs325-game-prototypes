@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Phaser Basic Project Template</title>
+	<script src="js/phaser.min.js"></script>
+	<!-- Boot.js must come first since it creates the BasicGame object
+	that stores all the states. -->
+	<script src="js/Boot.js"></script>
+	<script src="js/Preloader.js"></script>
+	<script src="js/MainMenu.js"></script>
+	<script src="js/Game.js"></script>
+    <script src="js/Game2.js"></script>
+    <script src="js/Win.js"></script>
+	<!-- main.js must come last since it references the other ones. -->
+	<script src="js/main.js"></script>
+
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+
+</head>
+<body>
+<div id="game"></div>
+<div id="readme">
+
+<strong>DA7 Changes:</strong>
+<ul>
+    <li>Added player health</li>
+    <ul>
+        <li>Player starts with 3 hp and dies if hp reaches 0</li>
+        <li>Player loses 1 hp and gets knocked upwards when hit</li>
+    </ul>
+    <li>Added the ability for players to wall jump while moving against a wall</li>
+    <li>Revamped stage 1</li>
+        <ul>
+            <li>Added Head Angel enemy</li>
+            <li>Increased difficulty</li>
+        </ul>
+    <li>Added some tiles to stage 2 to encourage the use of wall jumping</li>
+    <li>Increased the speed of Head Angel enemy</li>
+    <li>Added health bar to UI</li>
+    <li>Added energy bar to UI</li>
+    <li>Added return button to UI</li>
+    <ul>
+        <li>Returns player to main menu when clicked on</li>
+    </ul>
+</ul>
+
+
+<br><br><strong>Controls:</strong>
+<ul>
+<li>Hold the left and right arrow keys to move</li>
+<li>Press the up arrow key to jump</li>
+<li>Hold the down arrow key to create a barrier to defend yourself against angel bullets (consumes energy)</li>
+<li><strong>DA7</strong>: Press the up arrow while moving against a wall to wall jump</li>
+</ul>
+
+<h2>Escape from Heaven</h2>
+
+<ul>
+<li><strong>Originality:</strong>
+I created most of the game assets, the story of the game, and the gameplay.
+</li>
+
+<li><strong>Technical Merit:</strong>
+I made a large scale level with lots of tiles and enemies. There are enemies that can patrol, enemies that can shoot bullets. There's a locked door that requires a key to open.
+<br><strong>DA6</strong>: I created a moving platform that the player can stand on, and added tiles that break as players stand on them. I was able to make an enemy that follows the player continuously.
+<br><strong>DA7</strong>: I added sprites for health and energy bars that scale how much health and energy the player has. I added the ability for players to wall jump. I improved upon the design of stage 1 by adding an alternative route across the middle of the stage, as well as another key that the player must use wall jumping to get.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+I learend a lot about designing and creating a level from scratch.
+The hardest part was designing a level that wasn't too hard, but also wasn't too easy.
+<br><strong>DA6</strong>: I learned how to create breakable tiles. I learned how to make an object continuously follow another object. I learned how to create moving tiles that players can stand on, however I was unable to prevent the moving tile from being pushed across the x-axis.
+<br><strong>DA7</strong>: I learned how to create dynamic resource meters, and how to allow players to wall jump. I was unable to figure out how to make the player be pushed away from the wall slightly when wall jumping.
+
+<li><strong>Prototype Assets:</strong>
+Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
+<ul>
+<li>Music: "Poppers and Prosecco" Kevin MacLeod (<a href="incompetech.com">incompetech.com</a>). Licensed under <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons: By Attribution 3.0 License</a></li>
+<li>Music: "Recall of the Shadows" FoxSynergy (<a href="https://opengameart.org/content/recall-of-the-shadows">https://opengameart.org/content/recall-of-the-shadows</a>).</li>
+<li>Every other asset was self-made.</li>
+</ul>
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+Which other game most closely resembles your game? If you are borrowing code from a Phaser Example, you must say so here. If you borrow code from elsewhere, you must say so here.
+<ul>
+<li>The game that most closely resembles this game is Mario, and any other platformer game.
+</ul>
+</li>
+
+<li><strong>High Concept:</strong>
+Avoid angels and traps and try to reach the end of the level.
+</li>
+
+<li><strong>Theme:</strong>
+Escaping from Heaven.
+</li>
+
+<li><strong>Prototype Goal:</strong>
+This prototype is test the ability to create a map out of tiles, and test the viability of the different types of enemies that can be created.
+<br><strong>DA6</strong>: The goal of this prototype was to create a new level with the addition of a new enemy that chased the player, as well as new types of tiles.
+<br><strong>DA7</strong>: The goal of this prototype was to test the functionality of wall jumping, add moving resource bars to the UI, as well as to improve upon stage 1.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+Players should experience the enjoyment of platformer games, and the excitement of reaching your goal by getting past any danger.
+</li>
+
+<li><strong>Gameplay:</strong>
+The goal of the game is to reach the door that will bring you back to earth by avoiding any traps and the angels sent to capture you.
+</li>
+
+<li><strong>Strategies:</strong>
+Players should try to watch for incoming bullets, and use the energy barrier accordingly. If there's a locked door then players should look out for a key so they can progress further.
+<br><strong>DA6</strong>: Players can jump to help prevent cracked platforms from deteriorating.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+The game takes place in the outskirts of heaven, where you find yourself trying to escape and return back to earth. Angels have to come to capture you and bring you back, but you're willing to do all you can to go back to the place you call home.
+</li>
+
+<li><strong>Target Audience:</strong>
+The target audience is anyone who likes platformer games.
+</li>
+
+<li><strong>Play Time:</strong>
+Around 2-5 minutes.
+</li>
+
+</ul>
+</div>
+</body>
+</html>
